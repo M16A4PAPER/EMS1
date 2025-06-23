@@ -18,6 +18,23 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AdminUser.h" />
+    <ClInclude Include="AuthenticateUser.h" />
+    <ClInclude Include="Event.h" />
+    <ClInclude Include="EventManager.h" />
+    <ClInclude Include="GuestUser.h" />
+    <ClInclude Include="User.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AdminUser.cpp" />
+    <ClCompile Include="AuthenticateUser.cpp" />
+    <ClCompile Include="Event.cpp" />
+    <ClCompile Include="EventManager.cpp" />
+    <ClCompile Include="GuestUser.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="User.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -126,15 +143,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="AuthenticateUser.cpp" />
-    <ClCompile Include="Event.cpp" />
-    <ClCompile Include="EventManagementSystemOne.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="AuthenticateUser.h" />
-    <ClInclude Include="Event.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

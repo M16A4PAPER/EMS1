@@ -1,37 +1,30 @@
+// AuthenticateUser.cpp
+#include "AuthenticateUser.h"
+#include "AdminUser.h"
+#include "GuestUser.h"
 #include <iostream>
 #include <string>
+#include <limits>
 
 using namespace std;
 
-class AuthenticateUser {
-private:
-	const string ADMIN_USERNAME = "admin";
-	const string ADMIN_PASSWORD = "password";
+unique_ptr<User> AuthenticateUser::login(EventManager& mgr) {
+    int choice;
+    cout << "\nSelect Role:\n1. Admin\n2. Guest\nChoice: ";
+    cin >> choice;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
-public:
-	bool authenticateAdmin() {
-		string username, password;
+    if (choice == 1) {
+        string uname, pwd;
+        cout << "Username: "; getline(cin, uname);
+        cout << "Password: "; getline(cin, pwd);
+        if (uname == "admin" && pwd == "password") {
+            return make_unique<AdminUser>(mgr);
+        }
+        else {
+            cout << "Login failed. Proceeding as Guest.\n";
+        }
+    }
 
-		cout << "Enter Admin Username: ";
-		getline(cin, username);
-
-		cout << "Enter Admin Password: ";
-		getline(cin, password);
-
-		return (username == ADMIN_USERNAME && password == ADMIN_PASSWORD);
-	}
-
-	int selectUserRole() {
-		int choice = 0;
-		cout << "Select User Role:\n1. Admin\n2. Guest\nChoice: ";
-
-		while (!(cin >> choice) || (choice != 1 && choice != 2)) {
-			cout << "Invalid input. Enter 1 for Admin or 2 for Guest: ";
-			cin.clear();
-			cin.ignore(numeric_limits<streamsize>::max(), '\n');
-		}
-		cin.ignore(numeric_limits<streamsize>::max(), '\n'); // clear newline
-
-		return choice;
-	}
-};
+    return make_unique<GuestUser>(mgr);
+}
